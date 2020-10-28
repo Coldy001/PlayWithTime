@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment-timezone";
 import "./Timezone.scss";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { TimezoneArr } from "../assets/TimezoneList";
 
 function Timezone() {
     const [LiveTime, setLiveTime] = useState(new Date().toLocaleTimeString());
@@ -15,17 +16,17 @@ function Timezone() {
         };
     }, []);
 
-    const [TimezoneArr, setTimezoneArr] = useState([]);
+    // const [TimezoneArr, setTimezoneArr] = useState([]);
 
-    useEffect(() => {
-        const fetch = async () => {
-            const request = await axios.get(
-                `http://worldtimeapi.org/api/timezone`
-            );
-            setTimezoneArr(request.data);
-        };
-        fetch();
-    }, []);
+    // useEffect(() => {
+    //     const fetch = async () => {
+    //         const request = await axios.get(
+    //             `http://worldtimeapi.org/api/timezone`
+    //         );
+    //         setTimezoneArr(request.data);
+    //     };
+    //     fetch();
+    // }, []);
 
     const [timeZone, setTimeZone] = useState("Africa/Abidjan");
     const [data, setData] = useState({});
