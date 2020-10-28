@@ -6,9 +6,14 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 
 function Timezone({ TimezoneArr }) {
     const [LiveTime, setLiveTime] = useState(new Date().toLocaleTimeString());
-    setInterval(() => {
-        setLiveTime(new Date().toLocaleTimeString());
-    }, 1000);
+    useEffect(() => {
+        const inter = setInterval(() => {
+            setLiveTime(new Date().toLocaleTimeString());
+        }, 1000);
+        return () => {
+            clearInterval(inter);
+        };
+    }, []);
 
     const [timeZone, setTimeZone] = useState("Africa/Abidjan");
     const [data, setData] = useState({});

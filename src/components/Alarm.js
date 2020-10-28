@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import AlarmSelect from "./AlarmSelect";
 import "./Alarm.scss";
 import alarm from "../assets/alarm_clock.mp3";
@@ -19,10 +19,15 @@ function Alarm({ range }) {
         .split(",")
         .filter((x) => x !== "");
 
-    //To get the live time 
-    setInterval(() => {
-        setLiveTime(new Date().toLocaleString());
-    }, 1000);
+    //To get the live time
+    useEffect(() => {
+        const inter = setInterval(() => {
+            setLiveTime(new Date().toLocaleString());
+        }, 1000);
+        return () => {
+            clearInterval(inter);
+        };
+    }, []);
 
     //To create a string (hh:mm:ss)
     const ringTime = new Date();
@@ -44,7 +49,7 @@ function Alarm({ range }) {
         localStorage.setItem("alarms", filtered);
     };
 
-    //Executes when Alarm time and live time matches 
+    //Executes when Alarm time and live time matches
     if (
         getAlarms.find(
             (x) => x === `${LiveTime.split(" ")[1]} ${LiveTime.split(" ")[2]}`
