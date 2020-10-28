@@ -19,17 +19,6 @@ function App() {
 
     const [Comp, setComp] = useState("alarm");
     const [Active, setActive] = useState("active1");
-    const [TimezoneArr, setTimezoneArr] = useState([]);
-
-    useEffect(() => {
-        const fetch = async () => {
-            const request = await axios.get(
-                `http://worldtimeapi.org/api/timezone`
-            );
-            setTimezoneArr(request.data);
-        };
-        fetch();
-    }, []);
 
     function range(start, end) {
         return Array(end - start + 1)
@@ -79,7 +68,7 @@ function App() {
                 </button>
             </div>
             {Comp === "alarm" ? <Alarm range={range} /> : null}
-            {Comp === "clock" ? <Timezone TimezoneArr={TimezoneArr} /> : null}
+            {Comp === "clock" ? <Timezone /> : null}
             {Comp === "stopwatch" ? <Stopwatch /> : null}
             {Comp === "timer" ? <Timer range={range} /> : null}
         </div>

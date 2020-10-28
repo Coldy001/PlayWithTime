@@ -4,7 +4,7 @@ import moment from "moment-timezone";
 import "./Timezone.scss";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-function Timezone({ TimezoneArr }) {
+function Timezone() {
     const [LiveTime, setLiveTime] = useState(new Date().toLocaleTimeString());
     useEffect(() => {
         const inter = setInterval(() => {
@@ -13,6 +13,18 @@ function Timezone({ TimezoneArr }) {
         return () => {
             clearInterval(inter);
         };
+    }, []);
+
+    const [TimezoneArr, setTimezoneArr] = useState([]);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const request = await axios.get(
+                `http://worldtimeapi.org/api/timezone`
+            );
+            setTimezoneArr(request.data);
+        };
+        fetch();
     }, []);
 
     const [timeZone, setTimeZone] = useState("Africa/Abidjan");
