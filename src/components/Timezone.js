@@ -16,18 +16,6 @@ function Timezone() {
         };
     }, []);
 
-    // const [TimezoneArr, setTimezoneArr] = useState([]);
-
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //         const request = await axios.get(
-    //             `http://worldtimeapi.org/api/timezone`
-    //         );
-    //         setTimezoneArr(request.data);
-    //     };
-    //     fetch();
-    // }, []);
-
     const [timeZone, setTimeZone] = useState("Africa/Abidjan");
     const [data, setData] = useState({});
     const [timezones, setTimezones] = useState([]);
@@ -41,6 +29,7 @@ function Timezone() {
                 `http://worldtimeapi.org/api/timezone/${timeZone}`
             );
             setData(request.data);
+            console.log(request.data);
         };
         fetch();
     }, [timeZone]);

@@ -1,10 +1,15 @@
-import React, { useRef, useState, memo } from "react";
+import React, { useRef, useState, useEffect, memo } from "react";
 import "./Stopwatch.scss";
 import { VscDebugStart } from "react-icons/vsc";
 import { BsPause, BsFlag } from "react-icons/bs";
 import { BiReset } from "react-icons/bi";
 
 function Stopwatch() {
+    useEffect(() => {
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
     const interval = useRef(null);
 
     const [Hour, setHour] = useState(0);
@@ -79,7 +84,7 @@ function Stopwatch() {
                 ) : null}
             </div>
 
-            {laps.length === 0 ? null : (
+            {laps && (
                 <>
                     <div id="name">Laps:</div>
                     <div className="laps">

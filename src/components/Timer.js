@@ -1,4 +1,4 @@
-import React, { useState, memo, useRef } from "react";
+import React, { useState, memo, useEffect, useRef } from "react";
 import alarm from "../assets/alarm_clock.mp3";
 import "./Timer.scss";
 import { BiReset } from "react-icons/bi";
@@ -11,6 +11,12 @@ function Timer({ range }) {
     const [Sec, setSec] = useState(0);
     const [LiveTimer, setLiveTimer] = useState("00:00:00");
     const [running, setRunning] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
     const interval = useRef(null);
 
