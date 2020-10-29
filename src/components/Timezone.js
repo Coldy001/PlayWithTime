@@ -26,7 +26,7 @@ function Timezone() {
     useEffect(() => {
         const fetch = async () => {
             const request = await axios.get(
-                `http://worldtimeapi.org/api/timezone/${timeZone}`
+                `https://worldtimeapi.org/api/timezone/${timeZone}`
             );
             setData(request.data);
             console.log(request.data);
